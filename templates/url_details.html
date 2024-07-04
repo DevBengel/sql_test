@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="mt-5">URL Details</h1>
+<p><strong>ID:</strong> {{ url.id }}</p>
+<p><strong>URL 1:</strong> {{ url.url1 }}</p>
+<p><strong>QR Code 1:</strong> <img src="{{ qr_svg_url1 }}" alt="QR Code 1"></p>
+<p><strong>Reachable:</strong> {{ url.url1_reachable }}</p>
+<p><strong>URL 2:</strong> {{ url.url2 }}</p>
+<p><strong>QR Code 2:</strong> <img src="{{ qr_svg_url2 }}" alt="QR Code 2"></p>
+<p><strong>Reachable:</strong> {{ url.url2_reachable }}</p>
+<a href="{{ url_for('update_url', id=url.id) }}" class="btn btn-warning">Edit</a>
+<form action="{{ url_for('delete_url', id=url.id) }}" method="POST" style="display:inline-block;">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

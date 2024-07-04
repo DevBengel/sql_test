@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="mt-5">All URLs</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>URL 1</th>
+            <th>QR Code 1</th>
+            <th>Reachable</th>
+            <th>URL 2</th>
+            <th>QR Code 2</th>
+            <th>Reachable</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for url in urls %}
+        <tr>
+            <td>{{ url.id }}</td>
+            <td>{{ url.url1 }}</td>
+            <td><img src="{{ url_for('qr_code', url=url.url1) }}" alt="QR Code 1"></td>
+            <td>{{ url.url1_reachable }}</td>
+            <td>{{ url.url2 }}</td>
+            <td><img src="{{ url_for('qr_code', url=url.url2) }}" alt="QR Code 2"></td>
+            <td>{{ url.url2_reachable }}</td>
+            <td>
+                <a href="{{ url_for('url_details', id=url.id) }}" class="btn btn-info">View</a>
+                <a href="{{ url_for('update_url', id=url.id) }}" class="btn btn-warning">Edit</a>
+                <form action="{{ url_for('delete_url', id=url.id) }}" method="POST" style="display:inline-block;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

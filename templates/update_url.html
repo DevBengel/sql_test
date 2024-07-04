@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="mt-5">Update URL</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="url1">URL 1</label>
+        <input type="text" class="form-control" id="url1" name="url1" value="{{ url.url1 }}" required>
+    </div>
+    <div class="form-group">
+        <label for="url1_reachable">URL 1 Reachable</label>
+        <select class="form-control" id="url1_reachable" name="url1_reachable" required>
+            <option value="true" {% if url.url1_reachable %}selected{% endif %}>True</option>
+            <option value="false" {% if not url.url1_reachable %}selected{% endif %}>False</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="url2">URL 2</label>
+        <input type="text" class="form-control" id="url2" name="url2" value="{{ url.url2 }}" required>
+    </div>
+    <div class="form-group">
+        <label for="url2_reachable">URL 2 Reachable</label>
+        <select class="form-control" id="url2_reachable" name="url2_reachable" required>
+            <option value="true" {% if url.url2_reachable %}selected{% endif %}>True</option>
+            <option value="false" {% if not url.url2_reachable %}selected{% endif %}>False</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% endblock %}
